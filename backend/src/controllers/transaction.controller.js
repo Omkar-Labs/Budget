@@ -10,14 +10,14 @@ const addTransaction = asyncHandler(async (req, res) => {
     // Create new transaction in the database
     // Send response
 
-    const { amount, category, date, note, type,title } = req.body;
+    const { amount, category, date, note, type, title } = req.body;
 
-    if([amount, category, date, type,title].some(field => !field)){
+    if ([amount, category, date, type, title].some(field => !field)) {
         throw new ApiError(400, 'All fields are required');
     }
 
     const transaction = await Transaction.create({
-        userId:req.user._id,
+        userId: req.user._id,
         title,
         amount,
         category,
@@ -36,8 +36,8 @@ const updateTransaction = asyncHandler(async (req, res) => {
     // Find transaction by ID and update in the database
     // Send response
     const { id } = req.params;
-    const { amount, category, date, note, type,title } = req.body;
-    if([amount, category, date, type,title].some(field => !field)){
+    const { amount, category, date, note, type, title } = req.body;
+    if ([amount, category, date, type, title].some(field => !field)) {
         throw new ApiError(400, 'All fields are required');
     }
 
@@ -57,7 +57,7 @@ const deleteTransaction = asyncHandler(async (req, res) => {
     // Find transaction by ID and delete from the database
     // Send response
 
-    const {id} = req.params;
+    const { id } = req.params;
 
     const transaction = await Transaction.findOneAndDelete({ _id: id, userId: req.user._id });
     if (!transaction) {
@@ -72,18 +72,18 @@ const getTransactions = asyncHandler(async (req, res) => {
     // Send response with transactions
 
     let query = { userId: req.user._id };
-    const {search, type, category, startDate, endDate} = req.query;
+    const { search, type, category, startDate, endDate } = req.query;
 
-    if(search){
+    if (search) {
         query.title = { $regex: search, $options: 'i' }
     }
-    if(type){
+    if (type) {
         query.type = type;
     }
-    if(category){
+    if (category) {
         query.category = category;
     }
-    if(startDate && endDate){
+    if (startDate && endDate) {
         query.date = {
             $gte: new Date(startDate),
             $lte: new Date(endDate)
@@ -100,31 +100,41 @@ const getTransactions = asyncHandler(async (req, res) => {
 
 const transactionStats = asyncHandler(async (req, res) => {
     const userId = req.user._id;
-    const stats = await Transaction.aggregate([
-        { $match: { userId: userId } },
-        { $group: {
-            _id: '$type',
-            totalAmount: { $sum: '$amount' },
-            count: { $sum: 1 }
-        },
+    const { month, year } = req.query;
+    let matchQuery = { userId: userId };
+    if (month && year) {
+        matchQuery.date = {
+            $gte: new Date(year, month, 1),
+            $lte: new Date(year, month, 0)
+        }
     }
+
+    const stats = await Transaction.aggregate([
+        { $match: matchQuery },
+        {
+            $group: {
+                _id: '$type',
+                totalAmount: { $sum: '$amount' },
+                count: { $sum: 1 }
+            },
+        }
     ]);
 
     const stats2 = await Transaction.aggregate([
-        { $match: { userId: userId } },
-        { $group: {
-            _id: '$category',
-            totalAmount: { $sum: '$amount' },
-            count: { $sum: 1 }
-        },
-    }
+        { $match: matchQuery },
+        {
+            $group: {
+                _id: '$category',
+                totalAmount: { $sum: '$amount' },
+                count: { $sum: 1 }
+            },
+        }
     ]);
-
     const response = {
         totalIncome: stats.find(stat => stat._id === 'income')?.totalAmount || 0,
         totalExpense: stats.find(stat => stat._id === 'expense')?.totalAmount || 0,
         totalBalance: (stats.find(stat => stat._id === 'income')?.totalAmount || 0) - (stats.find(stat => stat._id === 'expense')?.totalAmount || 0),
-        categoryStats:stats2
+        categoryStats: stats2
     }
 
     res.status(200).json(new ApiResponse(200, 'Transaction stats retrieved successfully', response));
@@ -139,4 +149,4 @@ const singleTransaction = asyncHandler(async (req, res) => {
     res.status(200).json(new ApiResponse(200, 'Transaction retrieved successfully', transaction));
 });
 
-export {addTransaction, updateTransaction, deleteTransaction, getTransactions, transactionStats, singleTransaction};
+export { addTransaction, updateTransaction, deleteTransaction, getTransactions, transactionStats, singleTransaction };
