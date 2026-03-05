@@ -101,11 +101,16 @@ const getTransactions = asyncHandler(async (req, res) => {
 const transactionStats = asyncHandler(async (req, res) => {
     const userId = req.user._id;
     const { month, year } = req.query;
+    const monthInt = parseInt(month);
+    const yearInt = parseInt(year);
+    const startDate = new Date(yearInt, monthInt, 1);
+    const endDate = new Date(yearInt, monthInt + 1, 0,23,59,59,999);
+    
     let matchQuery = { userId: userId };
     if (month && year) {
         matchQuery.date = {
-            $gte: new Date(year, month, 1),
-            $lte: new Date(year, month, 0)
+            $gte: startDate,
+            $lte: endDate
         }
     }
 

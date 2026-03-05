@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
 import { loginUser, logOutUser, refreshAccessToken, registerUser,generateOtp,verifyOtp,getUserProfile } from "../controllers/user.controller.js";
-import { addTransaction, deleteTransaction, updateTransaction,transactionStats ,singleTransaction} from "../controllers/transaction.controller.js";
+import { addTransaction, deleteTransaction, updateTransaction,transactionStats ,singleTransaction,getTransactions} from "../controllers/transaction.controller.js";
 import { createBudget, getBudgets } from "../controllers/budget.controller.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 
@@ -27,6 +27,7 @@ router.route("/verify-otp").patch(verifyOtp)
 router.route("/profile").get(verifyToken, getUserProfile)
 
 router.route("/transactions").post(verifyToken, addTransaction)
+router.route("/transactions").get(verifyToken, getTransactions)
 router.route("/transactions/:id").patch(verifyToken, updateTransaction)
 router.route("/transactions/:id").delete(verifyToken, deleteTransaction)
 

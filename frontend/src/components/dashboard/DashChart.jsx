@@ -1,0 +1,89 @@
+import React, { useEffect, useState } from 'react'
+import Chart from 'chart.js/auto'
+import { User } from '@/App';
+import { Doughnut } from 'react-chartjs-2';
+
+
+
+const DashChart = () => {
+  const { data, setData } = React.useContext(User);
+  const [symbol, setsynbol] = useState("₹");
+  const [hoverData, setHoverData] = useState({ x: null, y: null });
+  const category = data.stats.categoryStats.map((item) => item._id);
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+
+    onHover: (event, chartElement) => {
+      if (chartElement.length > 0) {
+        const index = chartElement[0].index;
+        const xValue = category[index];
+        const yValue = data.stats.categoryStats[index].totalAmount;
+        setHoverData({ x: xValue, y: yValue });
+      }
+      else {
+        setHoverData({ x: null, y: null });
+      }
+    },
+    plugins: {
+      tooltip: { enabled: false }
+    },
+
+  }
+
+
+  const config = {
+    type: "Doughnut",
+    data: {
+      Labels: category,
+      datasets: [
+        {
+          Label: "Category Stats",
+          data: data.stats.categoryStats.map((item) => item.totalAmount),
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)"
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 205, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)"
+          ],
+          borderWidth: 1
+
+        }
+      ]
+    }
+  }
+  useEffect(() => {
+    if (data.user.currency === "INR") {
+      setsynbol("₹");
+    } else if (data.user.currency === "USD") {
+      setsynbol("$");
+    } else if (data.user.currency === "EUR") {
+      setsynbol("€");
+    }
+  }, [])
+  return (
+    <div className="w-full h-80 row-span-2 relative p-3 mt-3.5 ml-2 mr-4 justify-items-center items-start bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
+      <div className={`transition-opacity duration-300 ${hoverData.x ? 'opacity-100' : 'opacity-0'} z-10`}>
+        <div className="absolute top-5 right-5 p-4 rounded xl bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl">
+          <p className="text-pink-400 text-xs uppercase fonr-bold tracking-widest">{hoverData.x}</p>
+          <h3 className="text-2xl font-bold text-white">{symbol}{hoverData.y?.toLocaleString()}</h3>
+        </div>
+      </div>
+      <div className='w-full h-full row-span-3 flex items-center pb-6 justify-start flex-wrap'>
+        <h2 className="text-2xl font-bold text-white z-10">Category Distribution</h2>
+        <Doughnut data={config.data} redraw={true} options={options} />
+      </div>
+    </div>
+  )
+}
+
+export default DashChart

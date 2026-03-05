@@ -1,0 +1,16 @@
+{
+    "compilerOptions":{
+        "target":"ES6",
+        "module":"esnext",
+         "moduleResolution": "node", 
+        "esModuleInterop": true, 
+        "baseUrl":".",
+        "paths":{
+            "@/*":["./src/*"]
+        },
+        "checkJs":true,
+        "jsx":"react-jsx",
+        "lib":["dom","dom.iterable","esnext"],
+    },
+    "exclude":["node_modules","dist"]
+}

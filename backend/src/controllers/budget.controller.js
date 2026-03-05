@@ -42,8 +42,9 @@ const createBudget = asyncHandler(async (req, res) => {
 const getBudgets = asyncHandler(async (req, res) => {
     const { month, year,category } = req.query;
 
-    if (!month || !year || !category) {
-        throw new ApiError(400, "Month, year and category are required")
+    if (!month || !year ) {
+        res.status(400).json(new ApiError(400, "Month, year and category are required"));
+        return;
     }
 
     const budget = await Budget.aggregate([
@@ -51,13 +52,13 @@ const getBudgets = asyncHandler(async (req, res) => {
                 user: req.user._id,
                 month: parseInt(month),
                 year: parseInt(year),
-                category: category
+
             }  
         },
     ]);
 
     res.status(200).json(
-        new ApiResponse(200, budget, "Budgets retrieved successfully")
+        new ApiResponse(200,  "Budgets retrieved successfully",budget)
     )
 });
 
