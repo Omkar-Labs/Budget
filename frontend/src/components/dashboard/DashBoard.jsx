@@ -36,7 +36,7 @@ export const DashBoard = () => {
 
     }, []);
     return (
-        <div className='h-screen w-full py-4 grid grid-rows-5 grid-cols-2 gap-3 justify-items-center items-start'>
+        <div className='h-screen w-full py-4 grid grid-rows-5 grid-cols-2 gap-3  justify-items-center items-start'>
             <DashCard />
             <IncomeCard prevData={prevData} />
             <ExpenseCard prevData={prevData} />

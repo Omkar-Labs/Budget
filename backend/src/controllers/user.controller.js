@@ -104,7 +104,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: false, // Set to true in production when using HTTPS
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
         sameSite: "lax" // Adjust based on your frontend domain and requirements
     };
     return res.status(200)
@@ -147,7 +147,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         const options = {
             httpOnly: true,
             secure: false,
-            maxAge: 7*24*60*60*1000, // 7 days
+            maxAge: 30*24*60*60*1000, // 30 days
             sameSite: "lax"
         };
         return res.status(200)

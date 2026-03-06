@@ -9,6 +9,7 @@ import { dashboardLoader } from './hooks/authUser.hook.js'
 import Transactions from './components/Transaction/Transaction.jsx'
 import { Budgets } from './components/budgets/budgets.jsx'
 import { Analytics } from './components/analytics/Analytics.jsx'
+import { filterData } from './hooks/fetchTransactions'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: "transactions",
+        loader: filterData,
         element: <Transactions />
       },
       {

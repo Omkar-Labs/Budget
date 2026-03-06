@@ -14,7 +14,7 @@ export const dashboardLoader = async () => {
 
         // 2. Fetch others in parallel
         const [transRes, statsRes, budgetsRes] = await Promise.all([
-            axios.get(import.meta.env.VITE_TRANSACTIONS, { withCredentials: true }),
+            axios.get(`${import.meta.env.VITE_TRANSACTIONS}?limit=5&skip=0`, { withCredentials: true }),
             axios.get(`${import.meta.env.VITE_TRANSACTIONS_STATS}?month=${date.getMonth()}&year=${date.getFullYear()}`, { withCredentials: true }),
             axios.get(`${import.meta.env.VITE_BUDGETS}?month=${date.getMonth()+1}&year=${date.getFullYear()}`, { withCredentials: true })
         ]);

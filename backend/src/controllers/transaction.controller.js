@@ -72,7 +72,7 @@ const getTransactions = asyncHandler(async (req, res) => {
     // Send response with transactions
 
     let query = { userId: req.user._id };
-    const { search, type, category, startDate, endDate } = req.query;
+    const { search, type, category, startDate, endDate,limit,skip} = req.query;
 
     if (search) {
         query.title = { $regex: search, $options: 'i' }
@@ -92,7 +92,9 @@ const getTransactions = asyncHandler(async (req, res) => {
 
     const transactions = await Transaction.aggregate([
         { $match: query },
-        { $sort: { date: -1 } }
+        { $sort: { date: -1 } },
+        { $skip: parseInt(skip) || 0 },
+        { $limit: parseInt(limit) || 100 }  
     ]);
 
     res.status(200).json(new ApiResponse(200, 'Transactions retrieved successfully', transactions));
