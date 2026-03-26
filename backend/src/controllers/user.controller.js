@@ -27,9 +27,9 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(409).json(new ApiError(409, "User with this email already exists"));
         return;
     }
-    const existingUsername = await User.findOne({ username});
-    if(existingUsername){
-        res.status(409).json(new ApiError(409,"User with this username already exists"));
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+        res.status(409).json(new ApiError(409, "User with this username already exists"));
         return;
     }
 
@@ -97,7 +97,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const accessToken = await user.generateAccessToken();
     const refreshToken = await user.generateRefreshToken();
-    user.refreshToken = refreshToken;
+    user.refreshToken.push(refreshToken);
+    const len = user.refreshToken.length;
+    
+    if(len >= 3){
+        user.refreshToken.shift();
+    }
     await user.save({ validateBeforeSave: false });
 
     const userWithoutPassword = await User.findById(user._id).select("-password -refreshTokens");
@@ -109,13 +114,13 @@ const loginUser = asyncHandler(async (req, res) => {
     };
     return res.status(200)
         .cookie("refreshToken", refreshToken, options)
-        .cookie("accessToken", accessToken, options)
+        .cookie("accessToken", accessToken, { ...options, maxAge: 15 * 60 * 1000 })
         .json(new ApiResponse(200, { user: userWithoutPassword, accessToken }, "Login successful"));
 });
 
 const logOutUser = asyncHandler(async (req, res) => {
     // Clear cookies
-    await User.findByIdAndUpdate(req.user._id, { $set: { refreshTokens: undefined } }, { new: true })
+    await User.findByIdAndUpdate(req.user._id, { $pull: { refreshToken: req.cookies.refreshToken } }, { new: true })
         .then(() => {
             return res.status(200)
                 .clearCookie("refreshToken")
@@ -136,30 +141,31 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     try {
         const decoded = jwt.verify(newRefreshToken, process.env.REFRESH_TOKEN_SECRET);
         const user = await User.findById(decoded._id);
-        if (!user || user.refreshToken !== newRefreshToken) {
+        if (!user || !user.refreshToken.includes(newRefreshToken)) {
             res.status(401).json(new ApiError(401, "Invalid refresh token, please log in again"));
             return;
         }
         const accessToken = await user.generateAccessToken();
         const refreshToken = await user.generateRefreshToken();
-        user.refreshToken = refreshToken;
+        user.refreshToken.replace(newRefreshToken, refreshToken);
         await user.save({ validateBeforeSave: false });
         const options = {
             httpOnly: true,
             secure: false,
-            maxAge: 30*24*60*60*1000, // 30 days
+            maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
             sameSite: "lax"
         };
         return res.status(200)
-            .cookie("accessToken", accessToken, options)
+            .cookie("accessToken", accessToken, {...options, maxAge: 15 * 60 * 1000})
             .cookie("refreshToken", refreshToken, options)
             .json(new ApiResponse(200, { accessToken }, "Access token refreshed successfully"));
     } catch (error) {
         if (error === "TokenExpiredError") {
+            console.log(error)
             res.status(401).json(new ApiError(401, "Refresh token expired, please log in again"));
             return;
         }
-        res.status(401).json(new ApiError(401, "Invalid refresh token, please log in again"));
+        res.status(401).json(new ApiError(401, "Something went wrong, please try again"));
         return;
     }
 
@@ -216,7 +222,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
     // validate otp
     // check if otp exists in db and is not expired
     // if valid, allow user to reset password or perform the intended action
-    const { otp,newPassword , confirmPassword } = req.body;
+    const { otp, newPassword, confirmPassword } = req.body;
     if (!otp || otp.trim() === "") {
         res.status(400).json(new ApiError(400, "OTP is required"));
         return;
@@ -226,7 +232,7 @@ const verifyOtp = asyncHandler(async (req, res) => {
         res.status(400).json(new ApiError(400, "Invalid OTP"));
         return;
     }
-     if (!newPassword || !confirmPassword || newPassword.trim() === "" || confirmPassword.trim() === "") {
+    if (!newPassword || !confirmPassword || newPassword.trim() === "" || confirmPassword.trim() === "") {
         res.status(400).json(new ApiError(400, "New password and confirm password are required"));
         return;
     }
@@ -251,7 +257,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
         res.status(404).json(new ApiError(404, "User not found"));
         return;
     }
-    return res.status(200).json(new ApiResponse(200,  "User profile retrieved successfully",user));
+    return res.status(200).json(new ApiResponse(200, "User profile retrieved successfully", user));
 });
 
-export { registerUser, loginUser, logOutUser, refreshAccessToken, generateOtp, verifyOtp , getUserProfile};
+export { registerUser, loginUser, logOutUser, refreshAccessToken, generateOtp, verifyOtp, getUserProfile };

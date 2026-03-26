@@ -24,7 +24,7 @@ const TransactionTable = () => {
         }
       }, [])
     return (
-        <div className='w-full h-80 row-span-3 p-3 justify-items-center items-start'>
+        <div className='dashboard w-full h-80 row-span-3 p-3 justify-items-center items-start'>
             
             <Table className="w-full h-80 p-3  bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
                 <TableHeader className="w-full h-1/5  rounded-tl-lg rounded-tr-lg">

@@ -16,7 +16,7 @@ import { Player } from '@lottiefiles/react-lottie-player'
 import Financial from '../../assets/Financial.json'
 import IncomeCard from './IncomeCard';
 
-export const DashCard = () => {
+export const DashCard = ({setShow}) => {
   const [symbol, setSymbol] = React.useState("₹");
   const { data, setData } = React.useContext(User);
   const [counter, setCounter] = React.useState(0);
@@ -42,7 +42,7 @@ export const DashCard = () => {
 
   }, [data.user.currency, counter, count]);
   return (
-    <div className='w-full h-full px-2  flex items-center justify-center  gap-3 row-span-2 '>
+    <div className='dashboard w-full h-full px-2  flex items-center justify-center  gap-3 row-span-2 '>
       <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.45} scale={1.05} perspective={1500} className='w-full h-full flex items-center justify-center'>
         <Card size="default" className="w-full h-full p-3  bg-white/10 backdrop-blur-xl border border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
           <CardHeader className=" flex items-center justify-start">
@@ -60,7 +60,7 @@ export const DashCard = () => {
             </Player>
             <div className='flex items-center justify-between mt-10 '>
               <p className='text-white/85 text-2xl '>{date.toLocaleString("default", { month: "long", year: "numeric" })}</p>
-              <Button variant="outline" className=" rounded-full h-12 w-12 mb-3"><PlusIcon className='w-6 h-6 ' /></Button>
+              <Button variant="outline" className=" rounded-full h-12 w-12 mb-3" onClick={() => setShow((prev) => !prev)}><PlusIcon className='w-6 h-6 ' /></Button>
             </div>
           </CardContent>
 

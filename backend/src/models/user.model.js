@@ -26,9 +26,9 @@ const userSchema = new mongoose.Schema({
         type: String,
 
     },
-    refreshToken: {
+    refreshToken: [{
         type: String,
-    }
+    }]
 }, {
     timestamps: true
 });
@@ -40,7 +40,7 @@ userSchema.pre("save", async function (next) {
         if (this.isModified("password")) {
             this.password = await bcrypt.hash(this.password, 10);
         }
-        
+
         next;
     } catch (error) {
         throw new ApiError(500, "Error hashing password", error);

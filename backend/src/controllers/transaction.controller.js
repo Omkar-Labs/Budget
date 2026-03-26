@@ -58,8 +58,10 @@ const deleteTransaction = asyncHandler(async (req, res) => {
     // Send response
 
     const { id } = req.params;
+    
 
     const transaction = await Transaction.findOneAndDelete({ _id: id, userId: req.user._id });
+    
     if (!transaction) {
         throw new ApiError(404, 'Transaction not found');
     }
@@ -94,7 +96,8 @@ const getTransactions = asyncHandler(async (req, res) => {
         { $match: query },
         { $sort: { date: -1 } },
         { $skip: parseInt(skip) || 0 },
-        { $limit: parseInt(limit) || 100 }  
+        { $limit: parseInt(limit) || 100 },
+        
     ]);
 
     res.status(200).json(new ApiResponse(200, 'Transactions retrieved successfully', transactions));

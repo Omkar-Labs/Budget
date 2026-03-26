@@ -32,7 +32,7 @@ const ExpenseCard = ({prevData}) => {
         setExpenseTrend(useTrend(data.stats.totalExpense, prevData.prevTotalExpense));
     },[data.user.currency, data.stats.totalExpense, prevData.prevTotalExpense])
   return (
-     <div className='w-full h-full px-2  flex items-center justify-center  '>
+     <div className='dashboard w-full h-full px-2  flex items-center justify-center  '>
       <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.45} scale={1.05} perspective={1500} className='w-full h-full flex items-center justify-center'>
         <Card size="default" className="w-full h-full   bg-white/10 backdrop-blur-xl border-2 border-pink-500/60  shadow-pink-500/80">
           <CardHeader className=" flex items-center justify-start">

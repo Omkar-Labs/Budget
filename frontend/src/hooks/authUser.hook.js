@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { redirect } from "react-router-dom";
 
-export const dashboardLoader = async () => {
+export const dashboardLoader = async ({request,isRetry=false}) => {
    
     const date = new Date();
     try {
@@ -29,15 +29,21 @@ export const dashboardLoader = async () => {
         };
 
     } catch (err) {
+        if(!err.response){
+            throw new Error("Network error");
+        }
         const errorMsg = err.response?.data?.message || "";
-        console.log(errorMsg);
+        
+        if(isRetry){
+            throw redirect("/login");
+        }
+        
         // 3. Handle Token Refresh
-        if (errorMsg === "Access Token expired") {
+        if (err.response?.status === 401) {
             try {
                 await axios.post(import.meta.env.VITE_REFRESH_TOKEN, {}, { withCredentials: true });
-                return dashboardLoader(); // Retry the whole process once
+                return await dashboardLoader({request,isRetry:true}); // Retry the whole process once
             } catch (refreshErr) {
-                
                     throw redirect("/login");
                 
             }
@@ -45,7 +51,7 @@ export const dashboardLoader = async () => {
 
         // If not logged in or refresh failed, redirect to login
        
-        throw redirect("/login");
+        throw new Error("Something went wrong");
         
     }
 };

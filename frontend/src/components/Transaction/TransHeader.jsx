@@ -78,7 +78,7 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
 
     
     return (
-        <div className=' flex items-center self-start  sticky justify-between gap-4 p-2 mt-2 mb-6 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl z-10'>
+        <div className=' flex items-center self-start  sticky justify-between gap-4 p-2 mt-2 mb-6 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl '>
             <div className='flex items-center justify-evenly gap-4'>
 
                 <h1 className='text-white text-2xl ' >Transactions</h1>

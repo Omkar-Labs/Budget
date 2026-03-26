@@ -5,7 +5,8 @@ import { User } from '@/App'
 import { Wallet } from 'lucide-react'
 import wallet from '../../assets/Wallet.svg'
 
-const Header = () => {
+
+const Header = ({setProfileOpen , profileOpen}) => {
     const {data} = useContext(User);
   return (
     <div className='flex items-center justify-between gap-6 p-2 mt-2 bg-white/10 backdrop-blur-xl border-2 border-emerald-500/60  shadow-emerald-500/80 rounded-lg w-full'>
@@ -27,14 +28,12 @@ const Header = () => {
                     <NavLink to="/budgets" className={({isActive}) => ` hover:text-pink-500/80 hover:shadow-pink-500/80 hover:underline-pink-500/80 ${isActive ? 'text-pink-500/80 shadow-pink-500/80 underline-pink-500/80' : 'text-white'}`}>Budgets</NavLink>
 
                 </li>
-                <li>
-                    <NavLink to="/analytics" className={({isActive}) => ` hover:text-pink-500/80 hover:shadow-pink-500/80 hover:underline-pink-500/8  ${isActive ? 'text-pink-500/80 shadow-pink-5００/８０ underline-pink-５００/８０' : 'text-white'}`}>Analytics</NavLink>
-
-                </li>
+                
             </ul>
         </div>
         <div>
-            <DashAvatar imageSrc={data?.user.avatar}/>
+            <DashAvatar imageSrc={data?.user.avatar} setProfileOpen={setProfileOpen} profileOpen={profileOpen}/>
+            
         </div>
 
     </div>

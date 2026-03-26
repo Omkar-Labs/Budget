@@ -28,7 +28,7 @@ router.route("/profile").get(verifyToken, getUserProfile)
 
 router.route("/transactions").post(verifyToken, addTransaction)
 router.route("/transactions").get(verifyToken, getTransactions)
-router.route("/transactions/:id").patch(verifyToken, updateTransaction)
+router.route("/transactions/:id").put(verifyToken, updateTransaction)
 router.route("/transactions/:id").delete(verifyToken, deleteTransaction)
 
 router.route("/transactions/stats").get(verifyToken, transactionStats)

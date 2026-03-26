@@ -71,7 +71,7 @@ const DashChart = () => {
     }
   }, [])
   return (
-    <div className="w-full h-80 row-span-2 relative p-3 mt-3.5 ml-2 mr-4 justify-items-center items-start bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
+    <div className="dashboard w-full h-80 row-span-2 relative p-3 mt-3.5 ml-2 mr-4 justify-items-center items-start bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
       <div className={`transition-opacity duration-300 ${hoverData.x ? 'opacity-100' : 'opacity-0'} z-10`}>
         <div className="absolute top-5 right-5 p-4 rounded xl bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl">
           <p className="text-pink-400 text-xs uppercase fonr-bold tracking-widest">{hoverData.x}</p>

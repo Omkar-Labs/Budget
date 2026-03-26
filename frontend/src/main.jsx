@@ -8,8 +8,9 @@ import { SignupLoginPage } from './components/login/SignupLoginPage.jsx'
 import { dashboardLoader } from './hooks/authUser.hook.js'
 import Transactions from './components/Transaction/Transaction.jsx'
 import { Budgets } from './components/budgets/budgets.jsx'
-import { Analytics } from './components/analytics/Analytics.jsx'
+
 import { filterData } from './hooks/fetchTransactions'
+import NotFound from './NotFound.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,16 +31,16 @@ const router = createBrowserRouter([
         path: "budgets",
         element: <Budgets />
       },
-      {
-        path: "analytics",
-        element: <Analytics />
-      }
-
+      
     ]
   },
   {
     path: "login",
     element: <SignupLoginPage />
+  },
+  {
+    path: "*",
+    element: <NotFound />
   }
 ])
 
