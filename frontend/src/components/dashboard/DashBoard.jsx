@@ -63,7 +63,7 @@ export const DashBoard = () => {
     }, []);
     return (
         <div>
-        {data.stats ? <div className=' h-screen w-full py-4 grid grid-rows-5 grid-cols-2 gap-3  justify-items-center items-start'>
+        {data.transactions.length > 0 ? <div className=' h-screen w-full py-4 grid grid-rows-5 grid-cols-2 gap-3  justify-items-center items-start'>
             <DashCard setShow={setShow} />
             <IncomeCard prevData={prevData} />
             <ExpenseCard prevData={prevData} />
