@@ -3,7 +3,7 @@ import { NavLink  } from 'react-router-dom'
 import {DashAvatar} from'./DashAvatar'
 import { User } from '@/App'
 
-import wallet from '/Wallet.svg'
+import wallet from '/wallet.svg'
 
 
 const Header = ({setProfileOpen , profileOpen}) => {
