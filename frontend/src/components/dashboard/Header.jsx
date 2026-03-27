@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { NavLink  } from 'react-router-dom'
 import {DashAvatar} from'./DashAvatar'
 import { User } from '@/App'
-import { Wallet } from 'lucide-react'
-import wallet from '../../assets/Wallet.svg'
+
+import wallet from '/Wallet.svg'
 
 
 const Header = ({setProfileOpen , profileOpen}) => {
