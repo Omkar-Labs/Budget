@@ -108,9 +108,9 @@ const loginUser = asyncHandler(async (req, res) => {
     const userWithoutPassword = await User.findById(user._id).select("-password -refreshToken");
     const options = {
         httpOnly: true,
-        secure: false, // Set to true in production when using HTTPS
+        secure: true, // Set to true in production when using HTTPS
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-        sameSite: "lax" // Adjust based on your frontend domain and requirements
+        sameSite: "none" // Adjust based on your frontend domain and requirements
     };
     return res.status(200)
         .cookie("refreshToken", refreshToken, options)
@@ -155,9 +155,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         await user.save({ validateBeforeSave: false });
         const options = {
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-            sameSite: "lax"
+            sameSite: "none"
         };
         return res.status(200)
             .cookie("accessToken", accessToken, {...options, maxAge: 15 * 60 * 1000})
