@@ -61,7 +61,7 @@ const TransactionPopUp = ({show ,setShow}) => {
         
     }
     return (
-        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/20 backdrop-blur-sm p-4 rounded-lg shadow-lg z-1000'>
+        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg p-4 rounded-lg shadow-lg z-900'>
             <form action="" className='flex flex-wrap gap-2 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
                 <div className='w-[48%] flex flex-col gap-2'>
                     <label className="text-gray-200 text-xl" htmlFor='title'>Title:</label>

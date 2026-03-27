@@ -100,12 +100,12 @@ const loginUser = asyncHandler(async (req, res) => {
     user.refreshToken.push(refreshToken);
     const len = user.refreshToken.length;
     
-    if(len >= 3){
+    if(len > 3){
         user.refreshToken.shift();
     }
     await user.save({ validateBeforeSave: false });
 
-    const userWithoutPassword = await User.findById(user._id).select("-password -refreshTokens");
+    const userWithoutPassword = await User.findById(user._id).select("-password -refreshToken");
     const options = {
         httpOnly: true,
         secure: false, // Set to true in production when using HTTPS
@@ -147,7 +147,11 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
         }
         const accessToken = await user.generateAccessToken();
         const refreshToken = await user.generateRefreshToken();
-        user.refreshToken.replace(newRefreshToken, refreshToken);
+        user.refreshToken.push(refreshToken);
+        const len = user.refreshToken.length;
+        if(len > 3){
+            user.refreshToken.shift();
+        }
         await user.save({ validateBeforeSave: false });
         const options = {
             httpOnly: true,
@@ -160,8 +164,8 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             .cookie("refreshToken", refreshToken, options)
             .json(new ApiResponse(200, { accessToken }, "Access token refreshed successfully"));
     } catch (error) {
-        if (error === "TokenExpiredError") {
-            console.log(error)
+        console.log(error)
+        if (error.name === "TokenExpiredError") {
             res.status(401).json(new ApiError(401, "Refresh token expired, please log in again"));
             return;
         }

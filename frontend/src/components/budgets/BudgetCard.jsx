@@ -19,13 +19,13 @@ const BudgetCard = () => {
     return (
         <div className='w-full h-full col-span-2 flex flex-wrap items-center justify-start gap-2'>
             {data.budgets.budget.map((budget, index) => (
-                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.45} scale={1.05} perspective={1500} className='w-[24.5%] h-1/2 flex items-center justify-center'>
-                <div className={`w-full h-full bg-white/10 backdrop-blur-md   flex flex-col items-center justify-between p-3 rounded-lg  shadow-xl ${budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit > 1 ? "shadow-pink-500/30" : budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit >= 0.9 ? "shadow-amber-500/30" : "shadow-emerald-500/30"}`}>
+                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.45} scale={1.05} perspective={1500} className='w-[24.5%] h-1/2 flex items-center justify-center' key={index}>
+                <div className={`w-full h-full bg-white/10 backdrop-blur-md   flex flex-col items-center justify-between p-3 rounded-lg  shadow-xl ${budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit > 1 ? "shadow-pink-500/30" : budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit >= 0.9 ? "shadow-amber-500/30" : "shadow-emerald-500/30"}`} key={index}>
             
                 <div className='w-full h-1/2 flex items-center justify-start gap-4'>
                     
                     {budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit > 1 ? <AlertCircleIcon className="h-5 w-5 text-pink-500" /> : budget.transactions.reduce((acc, curr) => acc + curr.amount, 0)/budget.totalLimit >= 0.9 ? <AlertCircleIcon className="h-5 w-5 text-amber-500" /> : <ShieldCheckIcon className="h-5 w-5 text-emerald-500" />}
-                    <h1 className='text-white font-bold text-lg'>{budget._id}</h1>
+                    <h1 className='text-white font-bold text-lg capitalize'>{budget._id}</h1>
                 </div>
                 <div className='w-full flex items-center justify-between mb-2'>
                     <div>

@@ -7,6 +7,7 @@ import { User } from '@/App';
 const CategoryProgress = () => {
     const { data } = React.useContext(User);
     const [symbol, setSymbol] = React.useState("₹");
+    
 
     useEffect(() => {
         if (data.user.currency === "INR") {

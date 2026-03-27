@@ -57,7 +57,7 @@ const AddBudgets = ({show ,setShow}) => {
         
     }
     return (
-        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/20 backdrop-blur-sm p-4 rounded-lg shadow-lg z-1000'>
+        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg p-4 rounded-lg shadow-lg z-1000'>
             <form action="" className='flex flex-wrap gap-2 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
                 
                 <div className='w-[48%] flex flex-col gap-2'>
@@ -70,11 +70,11 @@ const AddBudgets = ({show ,setShow}) => {
                 </div>
                 <div className='w-[48%] flex flex-col gap-2'>
                     <label className="text-gray-200 text-xl" htmlFor='month'>Month:</label>
-                    <input type="text" required={true} placeholder='Month' id="month" name="month" value={formData.month} className='w-full p-2 cur sor-pointer rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
+                    <input type="text" required={true} placeholder='Month' id="month" name="month" value={formData.month} readOnly={true} className='w-full p-2 cur sor-pointer rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
                 <div className='w-[48%] flex flex-col gap-2'>
                     <label className="text-gray-200 text-xl" htmlFor='year'>Year:</label>
-                    <input type="text" required={true} placeholder='Year' id='year' name="year" value={formData.year}  className='w-full p-2 cursor-pointer rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
+                    <input type="text" required={true} placeholder='Year' id='year' name="year" value={formData.year} readOnly={true} className='w-full p-2 cursor-pointer rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
                 <button type='submit' className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>Add Budget</button>
             </form>

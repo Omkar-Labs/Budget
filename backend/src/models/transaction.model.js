@@ -25,6 +25,8 @@ const transactionSchema = new mongoose.Schema({
     category:{
         type:String,
         required:true,
+        lowercase:true,
+        trim:true
     },
     date:{
         type:Date,

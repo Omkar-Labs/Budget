@@ -22,13 +22,13 @@ const Otp = ({ handleFlip }) => {
             })
     }
     const verifyOtp = async ()=>{
-        axios.patch(import.meta.env.VITE_VERIFY_OTP, {otp:emailOtp,newPassword:password,confirmPassword},{ withCredentials: true })
+        axios.put(import.meta.env.VITE_VERIFY_OTP, {otp:emailOtp,newPassword:password,confirmPassword},{ withCredentials: true })
             .then((response) => {
                 setError("");
                 handleFlip(new Event("click"));
             })
             .catch((error) => {
-                
+                console.log(error)
                 setError(error.response?.data?.message || "Failed to verify OTP. Please try again.");
             })
     }

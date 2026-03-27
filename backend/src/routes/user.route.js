@@ -22,7 +22,7 @@ router.route("/refresh-token").post(refreshAccessToken)
 
 router.route("/forgot-password").post(generateOtp)
 
-router.route("/verify-otp").patch(verifyOtp)
+router.route("/verify-otp").put(verifyOtp)
 
 router.route("/profile").get(verifyToken, getUserProfile)
 

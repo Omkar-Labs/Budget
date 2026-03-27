@@ -18,7 +18,7 @@ function Profile({profileOpen, setProfileOpen}) {
     return (
         
            
-        <div className='profile h-100 w-80 fixed right-0 top-20 bg-black/20 backdrop-blur-sm p-4 rounded-lg shadow-lg '>
+        <div className='profile h-100 w-90 fixed right-0 top-20 bg-black/60 backdrop-blur-lg p-4 rounded-lg shadow-lg mr-2 '>
             <div className='fixed absolute top-2 right-2  z-10 flex items-center justify-end'>
                 <button onClick={handleProfileClose} className='text-white flex items-center gap-2 cursor-pointer'>
                 BACK<ArrowRightIcon size={15}/>

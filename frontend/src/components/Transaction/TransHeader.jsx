@@ -99,7 +99,7 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
                     <SelectContent>
                         <SelectGroup>
                             <SelectItem value="all">All Category</SelectItem>
-                            {data.stats.categoryStats.map((item) => (<SelectItem value={`${item._id}`}>{item._id}</SelectItem>))} 
+                            {data.stats.categoryStats.map((item,index) => (<SelectItem value={`${item._id}`} key={index}>{item._id}</SelectItem>))} 
                         </SelectGroup>
                     </SelectContent>
                 </Select>

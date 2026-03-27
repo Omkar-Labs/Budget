@@ -2,6 +2,7 @@ import ApiError from "../utils/apiError.js";
 import ApiResponse from "../utils/apiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import Budget from "../models/budget.model.js";
+import mongoose from "mongoose";
 
 
 
@@ -61,8 +62,21 @@ const getBudgets = asyncHandler(async (req, res) => {
         },{
             $lookup: {
                 from: "transactions",
-                localField: "_id",
-                foreignField: "category",
+                let: { budgetCategory: "$_id" },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: {
+                                $and: [
+                                    { $eq: ["$userId", new mongoose.Types.ObjectId(req.user._id)] },
+                                    { $eq: ["$category", "$$budgetCategory"] },
+                                    { $eq: [{$month : "$date"},parseInt(month)] },
+                                    { $eq: [{$year: "$date"}, parseInt(year)] }
+                                ]
+                            }
+                        }
+                    }
+                ],
                 as: "transactions"
             }
         }

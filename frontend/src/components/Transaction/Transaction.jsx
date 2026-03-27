@@ -73,14 +73,14 @@ const Transaction = () => {
     }
     const handleUpdate = (id) => {
         setTransaction(dataTrans.find((transaction) => transaction._id === id));
-        console.log(transaction);
+        
 
         setShowUpdate(true);
     }
     
     useEffect(() => {
 
-        console.log("Intersecting:", isIntersecting, ref.current);
+        
         if (isIntersecting && data.length >= filter.limit) {
             setFilter(prev => ({ ...prev, skip: prev.skip + prev.limit }));
         }
@@ -121,7 +121,7 @@ const Transaction = () => {
                             {dataTrans.map((transaction, index) => {
 
                                 return (<>
-                                    <TableRow className="hover:bg-white/10 cursor-pointer text-xl  text-white" key={index} ref={index === dataTrans.length - 1 ? ref : null}>
+                                    <TableRow className="hover:bg-white/10 cursor-pointer text-xl  text-white" key={transaction._id} ref={index === dataTrans.length - 1 ? ref : null} >
                                         <TableCell className="font-medium text-white">
                                             {/* <SimpleAvatar type={transaction.type} field = {transaction.category[0]}/> */}
                                             {new Date(transaction.date).toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" })}
