@@ -17,7 +17,7 @@ export const Budgets = () => {
   return (
     <>
       <div className='w-full h-screen grid grid-cols-2 grid-rows-2 items-center py-4 px-2 justify-center  gap-3'>
-        {data.budgets.budgets.length > 0 ? <><MonthProgress/>
+        {data.budgets.budget.length > 0 ? <><MonthProgress/>
       <CategoryProgress/>
       <BudgetCard/></> : <div className='flex h-full w-full fixed items-center justify-center gap-4 mt-10'>
           <h2 className='text-white text-6xl'>No budgets found</h2>
