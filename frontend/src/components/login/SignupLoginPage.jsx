@@ -23,8 +23,8 @@ export const SignupLoginPage = () => {
         setIsFlipped((prev)=>!prev);
     }
   return (
-    <div className=''>
-        <div className='h-screen w-3/5 z-0'>
+    <div className='h-full w-full flex bg-linear-to-br from-[#1a0b2e] via-[#2d1b4d] to-[#4a1d4d] '>
+        <div className='h-full w-3/5 z-0'>
             <h1 className='text-5xl font-bold text-white text-center mt-20 font-sans'>Master Your Money</h1>
             <Player
                 autoplay
