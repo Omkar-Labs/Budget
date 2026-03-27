@@ -45,4 +45,3 @@ export const SignupLoginPage = () => {
     </div>
   )
 }
-h-screen w-full flex items-center justify-center bg-linear-to-br from-[#1a0b2e] via-[#2d1b4d] to-[#4a1d4d]
