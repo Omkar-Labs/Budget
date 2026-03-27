@@ -2,7 +2,8 @@
     "compilerOptions":{
         "target":"ES6",
         "module":"esnext",
-         "moduleResolution": "node", 
+        "resolveJsonModule": true,
+        "moduleResolution": "node", 
         "esModuleInterop": true, 
         "baseUrl":".",
         "paths":{
