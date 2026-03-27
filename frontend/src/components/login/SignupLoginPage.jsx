@@ -24,7 +24,7 @@ export const SignupLoginPage = () => {
     }
   return (
     <div className=''>
-        <div className='h-screen w-3/5 '>
+        <div className='h-screen w-3/5 z-0'>
             <h1 className='text-5xl font-bold text-white text-center mt-20 font-sans'>Master Your Money</h1>
             <Player
                 autoplay
@@ -34,7 +34,7 @@ export const SignupLoginPage = () => {
             >
             </Player>
         </div>
-        <div className=' auth-container h-screen w-2/5 flex items-center justify-center'>
+        <div className=' auth-container h-screen w-2/5 flex items-center justify-center z-10'>
 
             <div ref={cardRef} className='auth-card w-90'>
                 

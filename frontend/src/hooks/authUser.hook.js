@@ -29,9 +29,9 @@ export const dashboardLoader = async ({request,isRetry=false}) => {
         };
 
     } catch (err) {
-        if(!err.response){
-            throw new Error("Network error");
-        }
+        // if(!err.response){
+        //     throw new Error("Network error");
+        // }
         const errorMsg = err.response?.data?.message || "";
         
         if(isRetry){
@@ -39,7 +39,7 @@ export const dashboardLoader = async ({request,isRetry=false}) => {
         }
         
         // 3. Handle Token Refresh
-        if (err.response?.status === 401) {
+        if (err.status === 401) {
             try {
                 await axios.post(import.meta.env.VITE_REFRESH_TOKEN, {}, { withCredentials: true });
                 return await dashboardLoader({request,isRetry:true}); // Retry the whole process once
