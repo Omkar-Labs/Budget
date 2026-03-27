@@ -1,5 +1,5 @@
 import { Player } from '@lottiefiles/react-lottie-player'
-import notFound from '@/assets/notfound.json'
+import notFound from '@/assets/notFound.json'
 
 
 
