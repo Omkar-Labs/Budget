@@ -7,7 +7,7 @@ import {DashBoard} from './components/dashboard/DashBoard.jsx'
 import { SignupLoginPage } from './components/login/SignupLoginPage.jsx'
 import { dashboardLoader } from './hooks/authUser.hook.js'
 import Transactions from './components/Transaction/Transaction.jsx'
-import { Budgets } from './components/budgets/budgets.jsx'
+import { Budgets } from './components/budgets/Budgets.jsx'
 
 import { filterData } from './hooks/fetchTransactions'
 import NotFound from './NotFound.jsx'
