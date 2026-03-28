@@ -51,8 +51,8 @@ export const Login = ({ handleFlip , setSignUp }) => {
     }
 
     return (
-        <div className=' auth-face h-90 w-full max-w-md flex flex-col items-center justify-evenly bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3))'>
-            <h2 className='text-white text-4xl font-extrabold mb-2 text-center p-1.5'>Welcome Back!</h2>
+        <div className=' auth-face min-h-[400px] w-[90%] max-w-md flex flex-col items-center justify-evenly bg-white/10 backdrop-blur-xl border border-white/20 p-6 lg:p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3)) mx-auto'>
+            <h2 className='text-white text-3xl lg:text-4xl font-extrabold mb-2 text-center p-1.5'>Welcome Back!</h2>
             <form className='w-full flex flex-col gap-3 position-relative top-0' onSubmit={handleSubmit}>
                 <div className="mb-4 mt-2">
                     <label className="text-gray-200 text-xl">Username:</label>

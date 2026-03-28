@@ -78,12 +78,12 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
 
     
     return (
-        <div className=' flex items-center self-start  sticky justify-between gap-4 p-2 mt-2 mb-6 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl '>
-            <div className='flex items-center justify-evenly gap-4'>
+        <div className=' flex flex-col xl:flex-row items-center self-start sticky justify-between gap-4 p-4 mt-2 mb-6 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-2xl w-full z-0'>
+            <div className='flex items-center justify-evenly gap-4 w-full xl:w-auto'>
 
-                <h1 className='text-white text-2xl ' >Transactions</h1>
+                <h1 className='text-white text-2xl w-full text-center xl:text-left' >Transactions</h1>
             </div>
-            <div>
+            <div className="w-full xl:w-auto">
                 <InputGroup className="bg-white/10 border-white/20 text-white w-full md:w-64">
                     <InputGroupInput placeholder="Search transactions..." value={filter.search} name="search" onChange={(e) => handleFilterChange(e.target.value, "search")} />
                     <InputGroupAddon>
@@ -91,9 +91,9 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
                     </InputGroupAddon>
                 </InputGroup>
             </div>
-            <div className="flex flex-wrap gap-4 ">
+            <div className="flex flex-wrap gap-4 w-full xl:w-auto justify-center">
                 <Select onValueChange={(value) => handleFilterChange(value, "category")} name="category" value={filter.category}>
-                    <SelectTrigger className="w-45 bg-white/10 border-white/20 ">
+                    <SelectTrigger className="w-full md:w-45 bg-white/10 border-white/20 ">
                         <SelectValue placeholder="Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -105,7 +105,7 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
                 </Select>
                 
                 <Select onValueChange={(value) => handleFilterChange(value, "type")} name="type" value={filter.type}>
-                    <SelectTrigger className="w-45 bg-white/10 border-white/20 ">
+                    <SelectTrigger className="w-full md:w-45 bg-white/10 border-white/20 ">
                         <SelectValue placeholder="Type" />
                     </SelectTrigger>
                     <SelectContent>
@@ -120,18 +120,18 @@ const TransHeader = ({filter ,setFilter,date,setDate}) => {
                            
                 
             </div>
-            <div>
+            <div className="w-full xl:w-auto flex justify-center">
 
 
 
-                <Field className="mx-auto w-60 bg-white/10 border-white/20 " >
+                <Field className="mx-auto w-full md:w-60 bg-white/10 border-white/20 " >
                     
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
                                 id="date-picker-range"
-                                className="justify-start px-2.5 font-normal"
+                                className="justify-start px-2.5 font-normal w-full"
                             >
                                 <CalendarIcon />
                                 {date?.from ? (

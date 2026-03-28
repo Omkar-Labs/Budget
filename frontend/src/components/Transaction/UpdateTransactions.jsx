@@ -70,26 +70,26 @@ const UpdateTransactions = ({show ,setShow,transaction}) => {
         }, 500);
     }
     return (
-        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/20 backdrop-blur-sm p-4 rounded-lg shadow-lg z-1000'>
-            <form action="" className='flex flex-wrap gap-2 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='title'>Title:</label>
+        <div className='popup w-[95%] md:w-[600px] h-auto min-h-fit max-h-[90vh] overflow-y-auto fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/20 backdrop-blur-sm p-6 rounded-lg shadow-lg z-1000'>
+            <form action="" className='flex flex-col md:flex-row flex-wrap gap-4 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='title'>Title:</label>
                     <input type="text" required={true} placeholder='Title' id="title" name="title" value={formData.title} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='amount'>Amount:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='amount'>Amount:</label>
                     <input type="number" required={true} placeholder='Amount' id="amount" name="amount" value={formData.amount} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='category'>Category:</label>
-                    <input type="text" required={true} placeholder='Category' id="category" name="category" value={formData.category} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ri   ng-2 focus:ring-purple-500' />
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='category'>Category:</label>
+                    <input type="text" required={true} placeholder='Category' id="category" name="category" value={formData.category} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='date'>Date:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='date'>Date:</label>
                     <input type="date" required={true} placeholder='Date' id='date' name="date" value={formData.date} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='type'>Type:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='type'>Type:</label>
                     <select name="type" id="type" required={true} value={formData.type} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>
                         <option value="">Select Type</option>
                         <option value="income">Income</option>
@@ -98,12 +98,12 @@ const UpdateTransactions = ({show ,setShow,transaction}) => {
                     
                    
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='note'>Note:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='note'>Note:</label>
                     <textarea name="note" id="note" placeholder='Optional' value={formData.note} onChange={handleChange} cols={30} rows={3} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'></textarea>
                 </div>
-                <button type='submit' className='w-[48%] p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>Update Transaction</button>
-                <button type='button' onClick={handleCancel} className='w-[48%] p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>Cancel</button>
+                <button type='submit' className='w-full md:w-[48%] p-3 md:p-2 mt-4 md:mt-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold'>Update Transaction</button>
+                <button type='button' onClick={handleCancel} className='w-full md:w-[48%] p-3 md:p-2 mt-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500 font-bold'>Cancel</button>
             </form>
         </div>
     )

@@ -35,8 +35,7 @@ const SignUp = ({ handleFlip }) => {
                     email:"",
                     username:"",
                     password:"",
-                    currency:"",
-                    avatar:null
+                    currency:""
                 });
                 setAvatar(null);
                 setError("");
@@ -68,8 +67,8 @@ const SignUp = ({ handleFlip }) => {
         }
     
     return (
-        <div className=' auth-face auth-back h-100 w-full max-w-md flex flex-col items-center justify-between gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3))'>
-            <h2 className='text-white text-4xl font-extrabold mb-2 text-center '>Welcome</h2>
+        <div className=' auth-face auth-back h-auto min-h-[400px] sm:h-100 w-[90%] sm:w-full max-w-md flex flex-col items-center justify-between gap-2 sm:gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3)) my-4 sm:my-0 mx-auto overflow-y-auto max-h-[90vh]'>
+            <h2 className='text-white text-3xl sm:text-4xl font-extrabold mb-2 text-center '>Welcome</h2>
             <form className='w-full flex flex-col gap-2.5' onSubmit={handleSubmit}>
                 <div>
                     <label className="text-gray-200 text-xl">Username:</label>

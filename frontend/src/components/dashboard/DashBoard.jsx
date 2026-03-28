@@ -62,16 +62,16 @@ export const DashBoard = () => {
 
     }, []);
     return (
-        <div>
-        {data.transactions.length > 0 ? <div className=' h-screen w-full py-4 grid grid-rows-5 grid-cols-2 gap-3  justify-items-center items-start'>
+        <div className="w-full h-full overflow-y-auto lg:overflow-hidden pb-10 lg:pb-0 custom-scrollbar">
+        {data.transactions.length > 0 ? <div className=' h-auto lg:h-screen w-full py-4 grid grid-rows-none lg:grid-rows-5 grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-3  justify-items-center items-start'>
             <DashCard setShow={setShow} />
             <IncomeCard prevData={prevData} />
             <ExpenseCard prevData={prevData} />
             <TransactionTable />
             <DashChart />
-        </div> : <div className='flex h-full flex-col w-full items-center justify-center gap-4 mt-10'>
-                        <h2 className='text-white text-6xl'>For Stats You Need to Add Transactions</h2>
-                        <Button variant="outline" className=" my-5  " onClick={()=> navigate("/transactions")}>Add Transaction</Button>
+        </div> : <div className='flex h-full flex-col w-full items-center justify-center gap-4 mt-10 text-center px-4'>
+                        <h2 className='text-white text-3xl md:text-6xl leading-tight'>For Stats You Need to Add Transactions</h2>
+                        <Button variant="outline" className=" mt-2 md:my-5  " onClick={()=> navigate("/transactions")}>Add Transaction</Button>
                     </div>}
             {show && <TransactionPopUp show={show} setShow={setShow} />}
 

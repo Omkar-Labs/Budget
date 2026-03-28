@@ -71,16 +71,16 @@ const DashChart = () => {
     }
   }, [])
   return (
-    <div className="dashboard w-full h-80 row-span-2 relative p-3 mt-3.5 ml-2 mr-4 justify-items-center items-start bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
-      <div className={`transition-opacity duration-300 ${hoverData.x ? 'opacity-100' : 'opacity-0'} z-10`}>
-        <div className="absolute top-5 right-5 p-4 rounded xl bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl">
-          <p className="text-pink-400 text-xs uppercase fonr-bold tracking-widest">{hoverData.x}</p>
+    <div className="dashboard w-full h-auto min-h-[340px] lg:h-80 row-span-1 lg:row-span-3 relative p-4 lg:p-6 flex flex-col items-center justify-center bg-white/10 backdrop-blur-xl rounded-lg border-white/20 shadow-[0_0_30px_rgba(255,0,255,0.1)]">
+      <div className={`transition-opacity duration-300 ${hoverData.x ? 'opacity-100' : 'opacity-0'} z-10 hidden sm:block absolute top-5 right-5 pointer-events-none`}>
+        <div className="p-4 rounded xl bg-white/10 border border-white/20 backdrop-blur-md shadow-2xl">
+          <p className="text-pink-400 text-xs uppercase font-bold tracking-widest">{hoverData.x}</p>
           <h3 className="text-2xl font-bold text-white">{symbol}{hoverData.y?.toLocaleString()}</h3>
         </div>
       </div>
-      <div className='w-full h-full row-span-3 flex items-center pb-6 justify-start flex-wrap'>
-        <h2 className="text-2xl font-bold text-white z-10">Category Distribution</h2>
-        <Doughnut data={config.data} redraw={true} options={options} />
+      <h2 className="text-xl lg:text-2xl font-bold text-white z-10 w-full text-center lg:text-left mb-4">Category Distribution</h2>
+      <div className="relative w-full h-full flex-1 flex justify-center items-center aspect-square max-h-[250px] lg:max-h-[300px] lg:mb-0">
+          <Doughnut data={config.data} redraw={true} options={options} />
       </div>
     </div>
   )

@@ -34,15 +34,15 @@ const Otp = ({ handleFlip }) => {
     }
     return (
         <>
-            {!formate ? <div className="auth-face auth-back h-90 w-full max-w-md flex flex-col items-center justify-between gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3))">
-                <h2 className="text-3xl font-bold mb-6 text-center">Forget Password</h2>
-                <p className="text-gray-600 mb-4 text-center">Enter the your Email to send an OTP </p>
+            {!formate ? <div className="auth-face auth-back h-auto min-h-[360px] sm:h-90 w-[90%] sm:w-full max-w-md flex flex-col items-center justify-between gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3)) mx-auto my-4 sm:my-0">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-white">Forget Password</h2>
+                <p className="text-gray-300 mb-4 text-center">Enter the your Email to send an OTP </p>
                 <div className="flex flex-col w-full">
-                <input type="text" placeholder="Enter Email" value={emailOtp} className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6" onChange={(e) => setEmailOtp(e.target.value)} />
+                <input type="text" placeholder="Enter Email" value={emailOtp} className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 mb-6" onChange={(e) => setEmailOtp(e.target.value)} />
                 {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
                 </div>
-                <button onClick={sentEmail} className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-colors duration-200">Send OTP</button>
-            </div> : <div className="auth-face auth-back h-90 w-full max-w-md flex flex-col items-center justify-between gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3))">
+                <button onClick={sentEmail} className="w-full bg-purple-500 text-white p-3 rounded-lg hover:bg-purple-600 transition-colors duration-200">Send OTP</button>
+            </div> : <div className="auth-face auth-back h-auto min-h-[400px] sm:h-90 w-[90%] sm:w-full max-w-md flex flex-col items-center justify-between gap-1.5 bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-(color: rgba(139,92,246,0.3)) mx-auto my-4 sm:my-0">
                 <h2 className="text-3xl font-bold mb-3 text-center ">Forget Password</h2>
                 <p className="text-gray-600 mb-2 text-center ">Enter OTP send to your Email</p>
                 <input type="text" placeholder="Enter OTP" value={emailOtp} className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2" onChange={(e) => setEmailOtp(e.target.value)} />

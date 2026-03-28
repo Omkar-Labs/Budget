@@ -95,39 +95,39 @@ const Transaction = () => {
     }, [data1, isIntersecting]);
     return (
         
-        <main className='flex-1 flex flex-col overflow-auto'>
-            <div className='p-4'>
+        <main className='flex-1 flex flex-col h-full overflow-hidden'>
+            <div className='p-4 shrink-0'>
                 <TransHeader filter={filter} setFilter={setFilter} date={date} setDate={setDate} />
             </div>
-            <div className=' w-full p-3'>
+            <div className=' w-full px-3 pb-8 flex-1 overflow-auto custom-scrollbar relative'>
                 {dataTrans.length === 0 ? (
-                    <div className='flex h-full w-full items-center justify-center gap-4 mt-10'>
-                        <h2 className='text-white text-6xl'>No transactions found</h2>
+                    <div className='flex h-full w-full items-center justify-center gap-4 mt-10 text-center px-4'>
+                        <h2 className='text-white text-3xl lg:text-6xl'>No transactions found</h2>
                     </div>
                 ) :
-                    (<Table className="w-full  p-3   bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
+                    (<Table className="w-full min-w-[700px] lg:min-w-full p-3   bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]">
                         <TableHeader className="w-full h-1/5  rounded-tl-lg rounded-tr-lg sticky top-0 bg-[#1a0b2e] backdrop-blur-xl border-b-2 border-white/20 z-10">
-                            <TableRow className="text-2xl text-white ">
-                                <TableHead className="w-45 text-white text-2xl">Date</TableHead>
-                                <TableHead className="w-45 text-white text-2xl">Transactions</TableHead>
-                                <TableHead className="w-45 text-white text-2xl">Category</TableHead>
-                                <TableHead className="w-45 text-white text-2xl">Amount</TableHead>
-                                <TableHead className="w-45 text-white text-2xl">Actions</TableHead>
+                            <TableRow className="text-lg lg:text-2xl text-white ">
+                                <TableHead className="w-45 text-white text-base lg:text-2xl">Date</TableHead>
+                                <TableHead className="w-auto lg:w-45 text-white text-base lg:text-2xl">Transactions</TableHead>
+                                <TableHead className="w-auto lg:w-45 text-white text-base lg:text-2xl">Category</TableHead>
+                                <TableHead className="w-auto lg:w-45 text-white text-base lg:text-2xl">Amount</TableHead>
+                                <TableHead className="w-auto lg:w-45 text-white text-base lg:text-2xl">Actions</TableHead>
 
                             </TableRow>
 
                         </TableHeader>
-                        <TableBody>
+                        <TableBody className="">
                             {dataTrans.map((transaction, index) => {
 
                                 return (<>
-                                    <TableRow className="hover:bg-white/10 cursor-pointer text-xl  text-white" key={transaction._id} ref={index === dataTrans.length - 1 ? ref : null} >
+                                    <TableRow className="hover:bg-white/10 cursor-pointer text-base lg:text-xl  text-white" key={transaction._id} ref={index === dataTrans.length - 1 ? ref : null} >
                                         <TableCell className="font-medium text-white">
                                             {/* <SimpleAvatar type={transaction.type} field = {transaction.category[0]}/> */}
                                             {new Date(transaction.date).toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" })}
                                         </TableCell>
-                                        <TableCell>{transaction.title}</TableCell>
-                                        <TableCell>{transaction.category}</TableCell>
+                                        <TableCell className="">{transaction.title}</TableCell>
+                                        <TableCell className="">{transaction.category}</TableCell>
 
                                         <TableCell className={` ${transaction.type === 'income' ? 'text-emerald-400 drop-shadow-[0_0_5px_rgba(52,211,153,0.5)]' : 'text-pink-400 drop-shadow-[0_0_5px_rgba(244,114,182,0.5)]'}`}>{transaction.type === 'income' ? `${symbol} ${transaction.amount}` : `${symbol} ${transaction.amount}`}</TableCell>
                                         <TableCell className="">
@@ -139,15 +139,15 @@ const Transaction = () => {
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent className="w-32">
                                                     <DropdownMenuGroup>
-                                                        <DropdownMenuItem onClick={() => handleUpdate(transaction._id)}>
+                                                        <DropdownMenuItem inset={false} className="" onClick={() => handleUpdate(transaction._id)}>
                                                             
                                                             Update</DropdownMenuItem>
 
                                                        
                                                     </DropdownMenuGroup>
-                                                    <DropdownMenuSeparator />
+                                                    <DropdownMenuSeparator className=""/>
                                                     <DropdownMenuGroup>
-                                                        <DropdownMenuItem variant="destructive" onClick={() => handleDelete(transaction._id)}>
+                                                        <DropdownMenuItem inset={false} className="" variant="destructive" onClick={() => handleDelete(transaction._id)}>
                                                             <DeleteIcon className="me-2" />
                                                             Delete
                                                         </DropdownMenuItem>

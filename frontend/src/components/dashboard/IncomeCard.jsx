@@ -34,7 +34,7 @@ const IncomeCard = ({ prevData }) => {
     
   }, [data.user.currency, data.stats.totalIncome, prevData.prevTotalIncome])
   return (
-    <div className='dashboard w-full h-full px-2  flex items-center justify-center  '>
+    <div className='dashboard w-full h-full flex items-center justify-center '>
       <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.45} scale={1.05} perspective={1500} className='w-full h-full flex items-center justify-center'>
         <Card size="default" className="w-full h-full   bg-white/10 backdrop-blur-xl border-2 border-emerald-500/60  shadow-emerald-500/80">
           <CardHeader className=" flex items-center justify-start">
@@ -42,7 +42,7 @@ const IncomeCard = ({ prevData }) => {
           </CardHeader >
           <CardContent className=" ">
             <div className='flex items-center gap-4'>
-            <h1 className='text-4xl font-bold text-white text-start display inline font-sans '>{symbol} {data.stats.totalIncome}  </h1>
+            <h1 className='text-3xl lg:text-4xl font-bold text-white text-start display inline font-sans '>{symbol} {data.stats.totalIncome}  </h1>
             <p className={`text-sm font-medium mt-2 ${incomeTrend >= 0 ? "text-emerald-400 drop-shadow-[0_0_5px_rgba(52,211,153,0.5)]" : "text-pink-400 drop-shadow-[0_0_5px_rgba(244,114,182,0.5)]"}`}>{incomeTrend>=0 ? `${incomeTrend.toFixed(2)}%` : `${Math.abs(incomeTrend).toFixed(2)}%`} {incomeTrend>=0 ? <ArrowUp className="inline-block ml-1 text-emerald-400" size={16} /> : <ArrowDown className="inline-block ml-1 text-pink-400" size={16} />}</p>
             </div>
           </CardContent>

@@ -61,26 +61,26 @@ const TransactionPopUp = ({show ,setShow}) => {
         
     }
     return (
-        <div className='popup  w-150 h-95 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg p-4 rounded-lg shadow-lg z-900'>
-            <form action="" className='flex flex-wrap gap-2 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='title'>Title:</label>
+        <div className='popup w-[95%] md:w-[600px] h-auto min-h-fit max-h-[90vh] overflow-y-auto fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg p-6 rounded-lg shadow-lg z-50'>
+            <form action="" className='flex flex-col md:flex-row flex-wrap gap-4 w-full h-full items-center justify-evenly' onSubmit={handleSubmit}>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='title'>Title:</label>
                     <input type="text" required={true} placeholder='Title' id="title" name="title" value={formData.title} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='amount'>Amount:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='amount'>Amount:</label>
                     <input type="number" required={true} placeholder='Amount' id="amount" name="amount" value={formData.amount} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='category'>Category:</label>
-                    <input type="text" required={true} placeholder='Category' id="category" name="category" value={formData.category} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ri   ng-2 focus:ring-purple-500' />
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='category'>Category:</label>
+                    <input type="text" required={true} placeholder='Category' id="category" name="category" value={formData.category} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='date'>Date:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='date'>Date:</label>
                     <input type="date" required={true} placeholder='Date' id='date' name="date" value={formData.date} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500' />
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='type'>Type:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='type'>Type:</label>
                     <select name="type" id="type" required={true} value={formData.type} onChange={handleChange} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>
                         <option value="">Select Type</option>
                         <option value="income">Income</option>
@@ -89,11 +89,11 @@ const TransactionPopUp = ({show ,setShow}) => {
                     
                    
                 </div>
-                <div className='w-[48%] flex flex-col gap-2'>
-                    <label className="text-gray-200 text-xl" htmlFor='note'>Note:</label>
+                <div className='w-full md:w-[48%] flex flex-col gap-2'>
+                    <label className="text-gray-200 text-lg md:text-xl" htmlFor='note'>Note:</label>
                     <textarea name="note" id="note" placeholder='Optional' value={formData.note} onChange={handleChange} cols={30} rows={3} className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'></textarea>
                 </div>
-                <button type='submit' className='w-full p-2 rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500'>Add Transaction</button>
+                <button type='submit' className='w-full mt-4 md:mt-0 p-3 md:p-2 font-bold rounded-lg bg-white/20 border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-500 flex flex-col relative bottom-0 left-0 w-full mb-1 items-center justify-center '>Add Transaction</button>
             </form>
         </div>
     )

@@ -23,9 +23,9 @@ const options = {
   maintainAspectRatio: false,
 }
   return (
-    <div className=' w-full h-full flex flex-col p-4 items-center justify-center  bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]'>
-        <h1 className='text-white  text-2xl z-10  absolute top-5 left-5'>Total Monthly Budget</h1>
-        <div className='w-lg h-full z-0 fixed ' ><Doughnut data={chartData} redraw={true} options={options} /></div>
+    <div className=' w-full h-auto min-h-[300px] lg:h-full flex flex-col p-4 items-center justify-center relative bg-white/10 backdrop-blur-xl rounded-lg  border-white/20  shadow-[0_0_30px_rgba(255,0,255,0.1)]'>
+        <h1 className='text-white text-xl lg:text-2xl z-10 w-full text-center lg:absolute lg:top-5 lg:left-5 lg:text-left mb-4 lg:mb-0'>Total Monthly Budget</h1>
+        <div className='w-full max-w-lg lg:w-lg h-[200px] lg:h-full z-0 relative lg:fixed flex justify-center items-center ' ><Doughnut data={chartData} redraw={true} options={options} /></div>
         <div className='absolute inset-0 flex flex-col items-center justify-center z-10'>
             <span className='text-white/50 text-s uppercase'>Remaining</span>
             <span className='text-2xl font-bold text-white'>{Math.round(100 - ((data.stats.totalExpense / data.budgets.totalLimit) * 100))}%</span>
