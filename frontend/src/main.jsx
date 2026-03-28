@@ -8,14 +8,16 @@ import { SignupLoginPage } from './components/login/SignupLoginPage.jsx'
 import { dashboardLoader } from './hooks/authUser.hook.js'
 import Transactions from './components/Transaction/Transaction.jsx'
 import { Budgets } from './components/budgets/Budgets.jsx'
-
+import { GlobalLoader } from './GlobalLoader.jsx'
 import { filterData } from './hooks/fetchTransactions'
 import NotFound from './NotFound.jsx'
+import { CustomErrorElement } from './CustomErrorElement.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <CustomErrorElement />,
     loader: dashboardLoader,
     children: [
       {
@@ -47,6 +49,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router} fallbackElement={<GlobalLoader />} />
   </StrictMode>,
 )
